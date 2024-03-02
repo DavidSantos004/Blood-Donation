@@ -35,12 +35,15 @@ public class DonationEvent {
     @Temporal(TemporalType.DATE)
     private Date eventDate;
 
+    @Column(name = "City", nullable = true)
     private String city;
 
+    @Column(name = "Address", nullable = true)
     private String address;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "Status", nullable = true)
     private String status;
 }

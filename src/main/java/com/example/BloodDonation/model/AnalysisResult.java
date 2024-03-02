@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,9 +37,10 @@ public class AnalysisResult {
     @Column(name = "result", nullable = false)
     private String result;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "analysis_date", nullable = false)
     private Date analysisDate;
 
-    @Column(name = "observations")
+    @Column(name = "observations", nullable = true)
     private String observations;
 }
