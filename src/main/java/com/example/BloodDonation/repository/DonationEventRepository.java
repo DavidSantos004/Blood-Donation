@@ -1,5 +1,5 @@
 package com.example.BloodDonation.repository;
 
-public interface DonacionEventoRepository {
+public interface DonationEventRepository {
 
 }

@@ -15,33 +15,33 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Persona {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idPersona;
+    private Long personId;
 
-    private String nombre;
+    private String firstName;
 
-    private String apellido;
+    private String lastName;
 
-    private String numeroDocumento;
+    private String documentNumber;
 
-    private String tipoUsuario;
+    private String userType;
 
-    private String grupoSanguineo;
+    private String bloodGroup;
 
     private String rhFactor;
 
-    private Date fechaNacimiento;
+    private Date dateOfBirth;
 
-    private String direccion;
+    private String address;
 
-    private String telefono;
+    private String phone;
 
     private String email;
 
-    private Date ultimaDonacion;
+    private Date lastDonation;
 
-    private String cargo;
+    private String position;
 }

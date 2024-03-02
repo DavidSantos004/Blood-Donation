@@ -1,5 +1,5 @@
 package com.example.BloodDonation.model;
 
-public class UnidadSangre {
+public class EventDonation {
 
 }

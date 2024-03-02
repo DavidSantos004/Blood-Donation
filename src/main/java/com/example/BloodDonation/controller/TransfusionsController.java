@@ -1,5 +1,6 @@
 package com.example.BloodDonation.controller;
 
-public class UnidadesSangreController {
+public class TransfusionsController {
 
 }
+

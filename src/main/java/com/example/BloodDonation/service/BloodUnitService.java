@@ -1,5 +1,5 @@
 package com.example.BloodDonation.service;
 
-public class EventoDonacionService {
+public class BloodUnitService {
 
 }

@@ -1,5 +1,5 @@
 package com.example.BloodDonation.controller;
 
-public class ResultadosAnalisisController {
+public class EventResponsiblePersonsController {
 
 }
