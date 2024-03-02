@@ -1,5 +1,10 @@
 package com.example.BloodDonation.repository;
 
-public interface TransfusionRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.example.BloodDonation.model.Transfusion;
+
+@Repository
+public interface TransfusionRepository extends JpaRepository<Transfusion, Integer> {
 }
