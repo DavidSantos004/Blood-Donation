@@ -2,9 +2,9 @@ package com.example.BloodDonation.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(
     name = "donation_event",
     uniqueConstraints = @UniqueConstraint(

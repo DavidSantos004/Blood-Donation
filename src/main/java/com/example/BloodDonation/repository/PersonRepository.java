@@ -7,5 +7,5 @@ import com.example.BloodDonation.model.Person;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Integer> {
-
+    
 }
