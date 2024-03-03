@@ -29,12 +29,13 @@ public class Transfusion {
     private Integer idTransfusion;
 
     @ManyToOne
-    @JoinColumn(name = "Unit_ID", nullable = false)
-    private Integer unitId;
+    @JoinColumn(name = "unit_id", nullable = true)
+    private BloodUnit bloodUnit;
 
     @ManyToOne
-    @JoinColumn(name = "Person_ID", nullable = true)
-    private Integer personId;
+    @JoinColumn(name = "person_id", nullable = true)
+    private Person person;
+
 
     @Temporal(TemporalType.DATE)
     @Column(name = "Transfusion_Date", nullable = false)
@@ -42,7 +43,7 @@ public class Transfusion {
 
     @ManyToOne
     @JoinColumn(name = "Recipient_ID", nullable = true)
-    private Integer recipientId;
+    private Person recipient;
 
     @Column(name = "Observations")
     private String observations;

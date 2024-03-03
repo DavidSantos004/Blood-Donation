@@ -15,7 +15,7 @@ import java.util.Date;
     name = "donation_event",
     uniqueConstraints = @UniqueConstraint(
         name = "event_date_city_unique",
-        columnNames = {"Event_Date", "City"}
+        columnNames = {"Event_Date"}
     )
 )
 public class DonationEvent {
