@@ -25,22 +25,25 @@ public class AnalysisResult {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idResult;
-
-    @ManyToOne
-    @JoinColumn(name = "unit_id", nullable = false)
-    private BloodUnit bloodUnit;
+    private Integer ID_Result;
 
     @Column(name = "analysis_type", nullable = false)
-    private String analysisType;
+    private String analysis_type;
 
     @Column(name = "result", nullable = false)
     private String result;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "analysis_date", nullable = false)
-    private Date analysisDate;
+    private Date analysis_date;
 
     @Column(name = "observations", nullable = true)
     private String observations;
+
+    // Relationship
+
+    @ManyToOne
+    @JoinColumn(name = "unit_id", nullable = false)
+    private BloodUnit units;
+
 }

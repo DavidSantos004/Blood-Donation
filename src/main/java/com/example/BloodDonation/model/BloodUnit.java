@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
+
 
 @Entity
 @Data
@@ -24,24 +26,39 @@ public class BloodUnit {
         generator = "blood_unit_sequence",
         strategy = GenerationType.SEQUENCE
     )
-    private Integer idUnit;
+    private Integer ID_Unit;
 
-    @Column(name = "Donor_ID")
-    private Integer donorId;
+    
 
-    @Column(name = "Blood_Type", nullable = false)
-    private String bloodType;
+    @Column(name = "blood_type", nullable = false)
+    private String blood_type;
 
-    @Column(name = "Rh_Factor", nullable = false)
-    private String rhFactor;
+    @Column(name = "rh_factor", nullable = false)
+    private String rh_factor;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "Donation_Date", nullable = false)
-    private Date donationDate;
+    @Column(name = "donation_date", nullable = false)
+    private Date donation_date;
 
-    @Column(name = "Status", nullable = false)
+    @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "Volume_Content", nullable = true)
-    private Double volumeContent;
+    @Column(name = "volume_content", nullable = true)
+    private Double volume_content;
+
+    // Relationships
+    
+    @OneToMany(mappedBy = "units")
+    private List<AnalysisResult> resultsUnits;
+
+    @OneToMany(mappedBy = "unitsEvent")
+    private List<DonationRecordEvent> recordEventUnits;
+
+    @OneToMany(mappedBy = "unitsTransfusion")
+    private List<Transfusion> resultsTranfusionUnits;
+
+    @ManyToOne
+    @JoinColumn(name = "donor_id")
+    private Person donor;
+    
 }

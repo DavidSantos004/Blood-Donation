@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,20 +31,29 @@ public class DonationEvent {
         generator = "donation_event_sequence",
         strategy = GenerationType.SEQUENCE
     )
-    private Integer eventId;
+    private Integer ID_Event;
 
     @Temporal(TemporalType.DATE)
-    private Date eventDate;
+    private Date event_date;
 
-    @Column(name = "City", nullable = true)
+    @Column(name = "city", nullable = true)
     private String city;
 
-    @Column(name = "Address", nullable = true)
+    @Column(name = "address", nullable = true)
     private String address;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "Status", nullable = true)
-    private String status;
+    @Column(name = "status_event", nullable = true)
+    private String status_event;
+
+    // Relationships
+
+    @OneToMany(mappedBy = "events")
+    private List<DonationRecordEvent> donationRecordEvent;
+
+    @OneToMany(mappedBy = "eventsResponsible")
+    private List<EventResponsiblePerson> responsibleEvent;
+
 }

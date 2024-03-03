@@ -22,17 +22,20 @@ public class DonationRecordEvent {
             generator = "donation_record_event_sequence",
             strategy = GenerationType.SEQUENCE
     )
-    private Integer idDonation;
+    private Integer ID_Donation;
+
+    // Relationsships
 
     @ManyToOne
-    @JoinColumn(name = "Person_ID", nullable = false)
-    private Person person;
+    @JoinColumn(name = "donor_event_id", nullable = false)
+    private Person donorEvent;
 
     @ManyToOne
-    @JoinColumn(name = "Event_ID", nullable = false)
-    private DonationEvent donationEvent;
+    @JoinColumn(name = "event_id", nullable = false)
+    private DonationEvent events;
 
     @ManyToOne
-    @JoinColumn(name = "Unit_ID", nullable = false)
-    private BloodUnit bloodUnit;
+    @JoinColumn(name = "unit_id", nullable = false)
+    private BloodUnit unitsEvent;
+
 }
