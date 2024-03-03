@@ -7,7 +7,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,17 +28,22 @@ public class Transfusion {
     @Column(name = "ID_Transfusion")
     private Integer idTransfusion;
 
-    @Column(name = "Unit_ID", nullable = false)
-    private Integer unitId;
+    @ManyToOne
+    @JoinColumn(name = "unit_id", nullable = true)
+    private BloodUnit bloodUnit;
 
-    @Column(name = "Person_ID")
-    private Integer personId;
+    @ManyToOne
+    @JoinColumn(name = "person_id", nullable = true)
+    private Person person;
 
+
+    @Temporal(TemporalType.DATE)
     @Column(name = "Transfusion_Date", nullable = false)
     private Date transfusionDate;
 
-    @Column(name = "Recipient_ID")
-    private Integer recipientId;
+    @ManyToOne
+    @JoinColumn(name = "Recipient_ID", nullable = true)
+    private Person recipient;
 
     @Column(name = "Observations")
     private String observations;

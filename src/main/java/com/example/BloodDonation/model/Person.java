@@ -9,6 +9,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -59,14 +61,19 @@ public class Person {
     )
     private String Dni;
 
+    @Column(name = "User_Type", nullable = false)
     private String userType;
 
+    @Column(name = "Blood_Group", nullable = true)
     private String bloodGroup;
 
+    @Column(name = "Rh_Factor", nullable = true)
     private String rhFactor;
 
+    @Temporal(TemporalType.DATE)
     private Date Birthdate;
 
+    @Column(name = "Address", nullable = true)
     private String address;
 
     @Column(
@@ -81,7 +88,9 @@ public class Person {
     )
     private String email;
 
+    @Temporal(TemporalType.DATE)
     private Date lastDonation;
 
+    @Column(name = "Role", nullable = true)
     private String position;
 }

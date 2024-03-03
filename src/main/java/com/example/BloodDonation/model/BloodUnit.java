@@ -35,12 +35,13 @@ public class BloodUnit {
     @Column(name = "Rh_Factor", nullable = false)
     private String rhFactor;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "Donation_Date", nullable = false)
     private Date donationDate;
 
     @Column(name = "Status", nullable = false)
     private String status;
 
-    @Column(name = "Volume_Content")
+    @Column(name = "Volume_Content", nullable = true)
     private Double volumeContent;
 }
