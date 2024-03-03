@@ -26,25 +26,26 @@ public class Transfusion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_Transfusion")
-    private Integer idTransfusion;
+    private Integer ID_Transfusion;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "transfusion_date", nullable = false)
+    private Date transfusionDate;
+    
+    @Column(name = "observations")
+    private String observations;
+
+    // Relationships
 
     @ManyToOne
     @JoinColumn(name = "unit_id", nullable = true)
-    private BloodUnit bloodUnit;
+    private BloodUnit unitsTransfusion;
 
     @ManyToOne
-    @JoinColumn(name = "person_id", nullable = true)
-    private Person person;
-
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "Transfusion_Date", nullable = false)
-    private Date transfusionDate;
+    @JoinColumn(name = "staff_transfusion_id", nullable = true)
+    private Person staff;
 
     @ManyToOne
-    @JoinColumn(name = "Recipient_ID", nullable = true)
-    private Person recipient;
-
-    @Column(name = "Observations")
-    private String observations;
+    @JoinColumn(name = "receptor_id", nullable = true)
+    private Person receptor;
 }

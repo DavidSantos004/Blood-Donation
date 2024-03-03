@@ -22,13 +22,15 @@ public class EventResponsiblePerson {
             generator = "event_responsible_person_sequence",
             strategy = GenerationType.SEQUENCE
     )
-    private Integer idEventResponsiblePerson;
+    private Integer ID_Event_Responsible_Person;
+
+    // Relationsships
 
     @ManyToOne
-    @JoinColumn(name = "Person_ID", nullable = false)
-    private Person person;
+    @JoinColumn(name = "staff_event_id", nullable = false)
+    private Person staffEvent;
 
     @ManyToOne
-    @JoinColumn(name = "Event_ID", nullable = false)
-    private DonationEvent donationEvent;
+    @JoinColumn(name = "event_id", nullable = false)
+    private DonationEvent eventsResponsible;
 }
