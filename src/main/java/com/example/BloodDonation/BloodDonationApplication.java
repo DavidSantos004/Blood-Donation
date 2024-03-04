@@ -5,14 +5,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.example.BloodDonation.model.AnalysisResult;
 import com.example.BloodDonation.model.BloodUnit;
 import com.example.BloodDonation.model.Person;
 import com.example.BloodDonation.repository.PersonRepository;
+import com.example.BloodDonation.service.AnalysisResultService;
 import com.example.BloodDonation.service.BloodUnitService;
 import com.example.BloodDonation.service.PersonService;
 import com.example.BloodDonation.service.TestDataGeneratorService;
@@ -36,9 +39,12 @@ public class BloodDonationApplication {
 		// Obtiene el servicio de personas desde el contexto de la aplicación
 		PersonService personService = context.getBean(PersonService.class);
 		BloodUnitService bloodUnitService = context.getBean(BloodUnitService.class);
+		AnalysisResultService analysisResultService = context.getBean(AnalysisResultService.class);
+		// AnalysisResultService analysisResultService = context.getBean(AnalysisResultService.class);
 		// Llama a los métodos de PersonService para probarlos
 		testPersonService(personService);
 		testBloodUnitService(bloodUnitService);
+		testAnalysisResultService(analysisResultService);
 
 		// Cierra el contexto de la aplicación
 		context.close();
@@ -106,7 +112,7 @@ public class BloodDonationApplication {
 		// List<Person> donors = personService.getDonors();
 		// System.out.println("\nDonantes:");
 		// donors.forEach(System.out::println);
-		System.out.println("-----------------------------------------------------------------------------");
+		// System.out.println("-----------------------------------------------------------------------------");
 
 		// // Llama al método para obtener empleados y muestra los resultados
 		// List<Person> employees = personService.getEmployees();
@@ -160,8 +166,7 @@ public class BloodDonationApplication {
 		// System.out.println("-----------------------------------------------------------------------------");
 
 		// Obtener unidades de sangre por grupo sanguíneo del donante
-		// System.out.println("\nUnidades de sangre por grupo sanguíneo del donante
-		// (grupo A):");
+		// System.out.println("\nUnidades de sangre por grupo sanguíneo del donante(grupo A):");
 		// List<BloodUnit> bloodUnitsByDonorBloodGroup =
 		// bloodUnitService.findBloodUnitsByDonorBloodGroup("B");
 		// bloodUnitsByDonorBloodGroup.forEach(System.out::println);
@@ -175,4 +180,82 @@ public class BloodDonationApplication {
 
 	}
 
+	public static void testAnalysisResultService(AnalysisResultService analysisResultService) throws ParseException{
+
+		// 1. Get all analysis results
+		// System.out.println("All analysis results:");
+		// List<AnalysisResult> allBloodUnits = analysisResultService.getAllAnalysisResults();
+		// allBloodUnits.forEach(System.out::println);
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 2. Get analysis result by ID
+		// System.out.println("\nAnalysis result by ID:");
+		// analysisResultService.getAnalysisResultById(2).ifPresent(System.out::println);
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 3. Save an analysis result
+		// System.out.println("\nSaving an analysis result:");
+		// SimpleDateFormat dates = new SimpleDateFormat("yyyy-MM-dd");
+
+		// BloodUnit unit = new BloodUnit();
+		// AnalysisResult ana = new AnalysisResult();
+		// unit.setID_Unit(10);
+		// Date analysisDate = dates.parse("2024-01-15");
+
+		// ana.setUnits(unit);
+		// ana.setAnalysis_type("Lipid Profile");
+		// ana.setResult("Total Cholesterol: 180 mg/dL, LDL: 100 mg/dL, HDL: 50 mg/dL");
+		// ana.setAnalysis_date(analysisDate);
+		// ana.setObservations("A lipid profile measures cholesterol levels in the blood. Maintaining a balance between LDL and HDL is essential for heart health.");
+		// // analysis.saveAnalysisResult(ana);
+
+		// AnalysisResult savedAnalysisResult = analysisResultService.saveAnalysisResult(ana);
+		// System.out.println("Analysis Result was saved " + savedAnalysisResult);
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 4. Delete an analysis result by ID
+		// System.out.println("\nDeleting an analysis result:");
+		// analysisResultService.deleteAnalysisResult(22);
+		// System.out.println("The analysis result was deleted");
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 5. Show depends the type that you selected
+		// System.out.println("Analysis Results by a type of it");
+		// System.out.println("-----------------------------------------------------------------------------");
+		// List<AnalysisResult> byType =
+		// analysisResultService.findAnalysisResultByType("Blood Test");
+		// for (AnalysisResult type : byType) {
+		// 	System.out.println(type + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 6. Show depends the result that you selected
+		// System.out.println("Analysis Results by a result of it");
+		// System.out.println("-----------------------------------------------------------------------------");
+		// List<AnalysisResult> byResult =
+		// analysisResultService.findAnalysisResultByResult("High");
+		// for (AnalysisResult result : byResult) {
+		// 	System.out.println(result + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 7. Update one 
+		// BloodUnit sampleBloodUnit = new BloodUnit();
+		// sampleBloodUnit.setID_Unit(2);
+		// Optional<List<AnalysisResult>> optionalAnalysisResults = analysisResultService.getAnalysisResultByUnits(sampleBloodUnit);
+
+        // optionalAnalysisResults.ifPresentOrElse(
+        //     analysisResults -> {
+        //         if (!analysisResults.isEmpty()) {
+        //             System.out.println("Analysis results found for blood unit with ID " + sampleBloodUnit + ":\n");
+        //             for (AnalysisResult result : analysisResults) {
+        //                 System.out.println(result + "\n");
+        //             }
+        //         } else {
+        //             System.out.println("No analysis results found for blood unit with ID" + sampleBloodUnit + ".");
+        //         }
+        //     },
+        //     () -> System.out.println("No analysis results found for blood unit with ID" + sampleBloodUnit + ".")
+        // );
+	}
 }
