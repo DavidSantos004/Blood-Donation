@@ -74,7 +74,7 @@ public class Person {
     private String user_type;
 
     @Column(name = "blood_group", nullable = true)
-    private String blood_group;
+    private String bloodgroup;
 
     @Column(name = "rh_factor", nullable = true)
     private String rh_factor;

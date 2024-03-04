@@ -37,6 +37,10 @@ public class PersonService {
         personRepository.deleteById(id);
     }
 
+    public List<Person> findByBloodGroup(String bloodGroup) {
+        return personRepository.findByBloodgroup(bloodGroup);
+    }
+
     public List<Person> getDonors() {
         return personRepository.findDonors();
     }

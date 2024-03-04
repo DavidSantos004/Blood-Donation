@@ -44,6 +44,7 @@ public class BloodDonationApplication {
         context.close();
     }
 
+	//servicios de persona
     private static void testPersonService(PersonService personService) {
         // // Obtén todas las personas
         // System.out.println("Todas las personas:");
@@ -82,19 +83,29 @@ public class BloodDonationApplication {
 		// Elimina la persona con ID 1 (cambia el ID según tus necesidades)
 		// System.out.println("\nEliminando la persona con ID 22:");
 		// personService.deletePerson(24);
+		System.out.println("-----------------------------------------------------------------------------");
+
+		// Obtener personas por grupo sanguíneo
+		// List<Person> bloodGroupA = personService.findByBloodGroup("A");
+		// bloodGroupA.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
 
 		//CONSULTAS JPQL
+		System.out.println("-----------------------------------------------------------------------------");
 
-		 // Llama al método para obtener donantes y muestra los resultados
-		 List<Person> donors = personService.getDonors();
-		 System.out.println("\nDonantes:");
-		 donors.forEach(System.out::println);
- 
-		 // Llama al método para obtener empleados y muestra los resultados
-		 List<Person> employees = personService.getEmployees();
-		 System.out.println("\nEmpleados:");
-		 employees.forEach(System.out::println);
+		//  // Llama al método para obtener donantes y muestra los resultados
+		//  List<Person> donors = personService.getDonors();
+		//  System.out.println("\nDonantes:");
+		//  donors.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
 
+		//  // Llama al método para obtener empleados y muestra los resultados
+		//  List<Person> employees = personService.getEmployees();
+		//  System.out.println("\nEmpleados:");
+		//  employees.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
+
+		
 	}
 }
 

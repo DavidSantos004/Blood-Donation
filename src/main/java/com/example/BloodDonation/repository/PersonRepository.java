@@ -12,6 +12,9 @@ import com.example.BloodDonation.model.Person;
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Integer> {
 
+    // En el repositorio PersonRepository
+    List<Person> findByBloodgroup(String bloodGroup);
+
        // Consulta JPQL para obtener todas las personas que son donantes
        @Query("SELECT p FROM Person p WHERE p.user_type = 'Donor'")
        List<Person> findDonors();
