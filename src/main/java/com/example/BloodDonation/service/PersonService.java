@@ -36,5 +36,13 @@ public class PersonService {
     public void deletePerson(Integer id) {
         personRepository.deleteById(id);
     }
+
+    public List<Person> getDonors() {
+        return personRepository.findDonors();
+    }
+
+    public List<Person> getEmployees() {
+        return personRepository.findEmployees();
+    }
     
 }

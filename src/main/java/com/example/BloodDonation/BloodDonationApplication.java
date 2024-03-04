@@ -49,11 +49,11 @@ public class BloodDonationApplication {
         // System.out.println("Todas las personas:");
         // List<Person> allPersons = personService.getAllPersons();
         // allPersons.forEach(System.out::println);
-
+		System.out.println("-----------------------------------------------------------------------------");
         // //Obtén una persona por ID
         // System.out.println("\nPersona con ID 1:");
         // personService.getPersonById(1).ifPresent(System.out::println);
-
+		System.out.println("-----------------------------------------------------------------------------");
         // Guarda una nueva persona
 		// System.out.println("\nGuardando nueva persona:");
 		// Person newPerson = new Person();
@@ -73,21 +73,28 @@ public class BloodDonationApplication {
 		// Person savedPerson = personService.savePerson(newPerson);
 		// System.out.println("Persona guardada: " + savedPerson);
 
-
-
         // // Obtén todas las personas después de guardar la nueva
         // System.out.println("\nTodas las personas después de guardar:");
         // allPersons = personService.getAllPersons();
         // allPersons.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
 
-        // // Elimina la persona recién creada por ID
-        // System.out.println("\nEliminando persona con ID " + savedPerson.getId());
-        // personService.deletePerson(savedPerson.getId());
+		// Elimina la persona con ID 1 (cambia el ID según tus necesidades)
+		// System.out.println("\nEliminando la persona con ID 22:");
+		// personService.deletePerson(24);
 
-        // // Obtén todas las personas después de eliminar la nueva
-        // System.out.println("\nTodas las personas después de eliminar:");
-        // allPersons = personService.getAllPersons();
-        // allPersons.forEach(System.out::println);
+		//CONSULTAS JPQL
+
+		 // Llama al método para obtener donantes y muestra los resultados
+		 List<Person> donors = personService.getDonors();
+		 System.out.println("\nDonantes:");
+		 donors.forEach(System.out::println);
+ 
+		 // Llama al método para obtener empleados y muestra los resultados
+		 List<Person> employees = personService.getEmployees();
+		 System.out.println("\nEmpleados:");
+		 employees.forEach(System.out::println);
 
 	}
 }
+
