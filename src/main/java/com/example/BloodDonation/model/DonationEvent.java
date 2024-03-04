@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -51,10 +53,12 @@ public class DonationEvent {
 
     // Relationships
 
-    @OneToMany(mappedBy = "events")
+    @JsonIgnore
+    @OneToMany(mappedBy = "events", fetch = FetchType.EAGER)
     private List<DonationRecordEvent> donationRecordEvent;
 
-    @OneToMany(mappedBy = "eventsResponsible")
+    @JsonIgnore
+    @OneToMany(mappedBy = "eventsResponsible", fetch = FetchType.EAGER)
     private List<EventResponsiblePerson> responsibleEvent;
 
 }

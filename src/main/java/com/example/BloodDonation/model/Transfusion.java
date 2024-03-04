@@ -2,6 +2,8 @@ package com.example.BloodDonation.model;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,14 +41,17 @@ public class Transfusion {
 
     // Relationships
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "unit_id", nullable = true)
     private BloodUnit unitsTransfusion;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "staff_transfusion_id", nullable = true)
     private Person staff;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "receptor_id", nullable = true)
     private Person receptor;

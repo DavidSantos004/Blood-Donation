@@ -1,5 +1,7 @@
 package com.example.BloodDonation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,10 +30,12 @@ public class EventResponsiblePerson {
 
     // Relationsships
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "staff_event_id", nullable = false)
     private Person staffEvent;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private DonationEvent eventsResponsible;

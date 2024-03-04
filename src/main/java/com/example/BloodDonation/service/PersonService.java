@@ -2,6 +2,8 @@ package com.example.BloodDonation.service;
 
 import com.example.BloodDonation.model.Person;
 import com.example.BloodDonation.repository.PersonRepository;
+
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import java.util.Optional;
 @Service
 public class PersonService {
 
+    @Autowired
     private final PersonRepository personRepository;
 
     @Autowired

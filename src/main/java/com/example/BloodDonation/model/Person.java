@@ -3,10 +3,11 @@ package com.example.BloodDonation.model;
 import java.util.Date;
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,9 +21,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(exclude = {"unitsPerson", "transfusionsPerson", "transfusions2Person", "eventsPerson", "eventsRecordPerson"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -102,18 +105,23 @@ public class Person {
 
     // Relationsships
 
-    @OneToMany(mappedBy = "donor")
+    @JsonIgnore
+    @OneToMany(mappedBy = "donor", fetch = FetchType.EAGER)
     private List<BloodUnit> unitsPerson;
 
-    @OneToMany(mappedBy = "staff")
+    @JsonIgnore
+    @OneToMany(mappedBy = "staff", fetch = FetchType.EAGER)
     private List<Transfusion> transfusionsPerson;
 
-    @OneToMany(mappedBy = "receptor")
+    @JsonIgnore
+    @OneToMany(mappedBy = "receptor", fetch = FetchType.EAGER)
     private List<Transfusion> transfusions2Person;
 
-    @OneToMany(mappedBy = "staffEvent")
+    @JsonIgnore
+    @OneToMany(mappedBy = "staffEvent", fetch = FetchType.EAGER)
     private List<EventResponsiblePerson> eventsPerson;
 
-    @OneToMany(mappedBy = "donorEvent")
+    @JsonIgnore
+    @OneToMany(mappedBy = "donorEvent", fetch = FetchType.EAGER)
     private List<DonationRecordEvent> eventsRecordPerson;
 }

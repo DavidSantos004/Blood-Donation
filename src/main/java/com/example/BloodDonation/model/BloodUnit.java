@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Data
@@ -50,15 +52,19 @@ public class BloodUnit {
 
     // Relationships
     
-    @OneToMany(mappedBy = "units")
+    @JsonIgnore
+    @OneToMany(mappedBy = "units", fetch = FetchType.EAGER)
     private List<AnalysisResult> resultsUnits;
 
-    @OneToMany(mappedBy = "unitsEvent")
+    @JsonIgnore
+    @OneToMany(mappedBy = "unitsEvent", fetch = FetchType.EAGER)
     private List<DonationRecordEvent> recordEventUnits;
 
-    @OneToMany(mappedBy = "unitsTransfusion")
+    @JsonIgnore
+    @OneToMany(mappedBy = "unitsTransfusion", fetch = FetchType.EAGER)
     private List<Transfusion> resultsTranfusionUnits;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "donor_id")
     private Person donor;
