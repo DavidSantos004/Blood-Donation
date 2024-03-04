@@ -493,7 +493,7 @@ public class TestDataGeneratorService {
                                         .donor(donor)
                                         .blood_type("A")
                                         .rh_factor("+")
-                                        .donation_date(maybe)
+                                        .donationdate(maybe)
                                         .status("Filtered")
                                         .volume_content(0.0)
                                         .build();
@@ -506,7 +506,7 @@ public class TestDataGeneratorService {
                                         .donor(donor2)
                                         .blood_type("B")
                                         .rh_factor("-")
-                                        .donation_date(maybe2)
+                                        .donationdate(maybe2)
                                         .status("Processed")
                                         .volume_content(250.0)
                                         .build();
@@ -520,7 +520,7 @@ public class TestDataGeneratorService {
                                         .donor(donor3)
                                         .blood_type("A")
                                         .rh_factor("+")
-                                        .donation_date(new Date())
+                                        .donationdate(new Date())
                                         .status("Stored")
                                         .volume_content(200.0)
                                         .build();
@@ -534,7 +534,7 @@ public class TestDataGeneratorService {
                                         .donor(donor4)
                                         .blood_type("AB")
                                         .rh_factor("-")
-                                        .donation_date(maybe)
+                                        .donationdate(maybe)
                                         .status("Shipped")
                                         .volume_content(300.0)
                                         .build();
@@ -548,7 +548,7 @@ public class TestDataGeneratorService {
                                         .donor(donor5)
                                         .blood_type("O")
                                         .rh_factor("+")
-                                        .donation_date(maybe2)
+                                        .donationdate(maybe2)
                                         .status("Expired")
                                         .volume_content(150.0)
                                         .build();
@@ -562,7 +562,7 @@ public class TestDataGeneratorService {
                                         .donor(donor6)
                                         .blood_type("A")
                                         .rh_factor("-")
-                                        .donation_date(new Date())
+                                        .donationdate(new Date())
                                         .status("Delivered")
                                         .volume_content(180.0)
                                         .build();
@@ -575,7 +575,7 @@ public class TestDataGeneratorService {
                                         .donor(donor7)
                                         .blood_type("O")
                                         .rh_factor("+")
-                                        .donation_date(maybe)
+                                        .donationdate(maybe)
                                         .status("Filtered")
                                         .volume_content(220.0)
                                         .build();
@@ -589,7 +589,7 @@ public class TestDataGeneratorService {
                                         .donor(donor8)
                                         .blood_type("B")
                                         .rh_factor("-")
-                                        .donation_date(maybe2)
+                                        .donationdate(maybe2)
                                         .status("Processed")
                                         .volume_content(270.0)
                                         .build();
@@ -603,7 +603,7 @@ public class TestDataGeneratorService {
                                         .donor(donor9)
                                         .blood_type("A")
                                         .rh_factor("-")
-                                        .donation_date(new Date())
+                                        .donationdate(new Date())
                                         .status("Stored")
                                         .volume_content(190.0)
                                         .build();
@@ -617,7 +617,7 @@ public class TestDataGeneratorService {
                                         .donor(donor10)
                                         .blood_type("A")
                                         .rh_factor("-")
-                                        .donation_date(maybe)
+                                        .donationdate(maybe)
                                         .status("Shipped")
                                         .volume_content(320.0)
                                         .build();
@@ -631,7 +631,7 @@ public class TestDataGeneratorService {
                                         .donor(donor11)
                                         .blood_type("B")
                                         .rh_factor("-")
-                                        .donation_date(maybe2)
+                                        .donationdate(maybe2)
                                         .status("Expired")
                                         .volume_content(130.0)
                                         .build();
@@ -645,7 +645,7 @@ public class TestDataGeneratorService {
                                         .donor(donor12)
                                         .blood_type("O")
                                         .rh_factor("+")
-                                        .donation_date(new Date())
+                                        .donationdate(new Date())
                                         .status("Delivered")
                                         .volume_content(250.0)
                                         .build();
@@ -658,7 +658,7 @@ public class TestDataGeneratorService {
                                         .donor(donor13)
                                         .blood_type("A")
                                         .rh_factor("-")
-                                        .donation_date(maybe)
+                                        .donationdate(maybe)
                                         .status("Filtered")
                                         .volume_content(180.0)
                                         .build();
@@ -672,7 +672,7 @@ public class TestDataGeneratorService {
                                         .donor(donor14)
                                         .blood_type("O")
                                         .rh_factor("+")
-                                        .donation_date(maybe2)
+                                        .donationdate(maybe2)
                                         .status("Processed")
                                         .volume_content(240.0)
                                         .build();
@@ -686,7 +686,7 @@ public class TestDataGeneratorService {
                                         .donor(donor15)
                                         .blood_type("AB")
                                         .rh_factor("-")
-                                        .donation_date(new Date())
+                                        .donationdate(new Date())
                                         .status("Stored")
                                         .volume_content(200.0)
                                         .build();
@@ -700,7 +700,7 @@ public class TestDataGeneratorService {
                                         .donor(donor16)
                                         .blood_type("A")
                                         .rh_factor("+")
-                                        .donation_date(maybe)
+                                        .donationdate(maybe)
                                         .status("Shipped")
                                         .volume_content(300.0)
                                         .build();
@@ -714,7 +714,7 @@ public class TestDataGeneratorService {
                                         .donor(donor17)
                                         .blood_type("B")
                                         .rh_factor("-")
-                                        .donation_date(maybe2)
+                                        .donationdate(maybe2)
                                         .status("Expired")
                                         .volume_content(150.0)
                                         .build();
@@ -728,7 +728,7 @@ public class TestDataGeneratorService {
                                         .donor(donor18)
                                         .blood_type("A")
                                         .rh_factor("+")
-                                        .donation_date(new Date())
+                                        .donationdate(new Date())
                                         .status("Delivered")
                                         .volume_content(270.0)
                                         .build();
@@ -741,7 +741,7 @@ public class TestDataGeneratorService {
                                         .donor(donor19)
                                         .blood_type("O")
                                         .rh_factor("+")
-                                        .donation_date(maybe)
+                                        .donationdate(maybe)
                                         .status("Filtered")
                                         .volume_content(190.0)
                                         .build();
@@ -755,7 +755,7 @@ public class TestDataGeneratorService {
                                         .donor(donor20)
                                         .blood_type("AB")
                                         .rh_factor("-")
-                                        .donation_date(new Date())
+                                        .donationdate(new Date())
                                         .status("Processed")
                                         .volume_content(220.0)
                                         .build();

@@ -5,6 +5,7 @@ import com.example.BloodDonation.repository.BloodUnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,5 +35,15 @@ public class BloodUnitService {
         bloodUnitRepository.deleteById(id);
     }
 
+    public List<BloodUnit> getBloodUnitsByDonationDate(Date donationdate) {
+        return bloodUnitRepository.findByDonationdate(donationdate);
+    }
+
+    public List<BloodUnit> findBloodUnitsByDonorBloodGroup(String bloodGroup) {
+        return bloodUnitRepository.findBloodUnitsByDonorBloodGroup(bloodGroup);
+    }
     
+    public List<BloodUnit> findBloodUnitsByVolumeContentGreaterThan(double minVolume) {
+        return bloodUnitRepository.findBloodUnitsByVolumeContentGreaterThan(minVolume);
+    }
 }

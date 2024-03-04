@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = {"resultsUnits", "recordEventUnits", "resultsTranfusionUnits", "donor"})
 @Table(name = "blood_units")
 public class BloodUnit {
 
@@ -42,7 +44,7 @@ public class BloodUnit {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "donation_date", nullable = false)
-    private Date donation_date;
+    private Date donationdate;
 
     @Column(name = "status", nullable = false)
     private String status;
