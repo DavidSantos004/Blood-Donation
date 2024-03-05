@@ -3,6 +3,7 @@ package com.example.BloodDonation;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -13,10 +14,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 import com.example.BloodDonation.model.AnalysisResult;
 import com.example.BloodDonation.model.BloodUnit;
+import com.example.BloodDonation.model.DonationEvent;
+import com.example.BloodDonation.model.DonationRecordEvent;
 import com.example.BloodDonation.model.Person;
 import com.example.BloodDonation.repository.PersonRepository;
 import com.example.BloodDonation.service.AnalysisResultService;
 import com.example.BloodDonation.service.BloodUnitService;
+import com.example.BloodDonation.service.DonationEventService;
+import com.example.BloodDonation.service.DonationRecordEventService;
 import com.example.BloodDonation.service.PersonService;
 import com.example.BloodDonation.service.TestDataGeneratorService;
 
@@ -40,11 +45,14 @@ public class BloodDonationApplication {
 		PersonService personService = context.getBean(PersonService.class);
 		BloodUnitService bloodUnitService = context.getBean(BloodUnitService.class);
 		AnalysisResultService analysisResultService = context.getBean(AnalysisResultService.class);
+		DonationRecordEventService donationRecordEventService = context.getBean(DonationRecordEventService.class);
+
 		// AnalysisResultService analysisResultService = context.getBean(AnalysisResultService.class);
 		// Llama a los métodos de PersonService para probarlos
 		testPersonService(personService);
 		testBloodUnitService(bloodUnitService);
 		testAnalysisResultService(analysisResultService);
+		testDonationRecordEventService(donationRecordEventService);
 
 		// Cierra el contexto de la aplicación
 		context.close();
@@ -123,60 +131,58 @@ public class BloodDonationApplication {
 
 	private static void testBloodUnitService(BloodUnitService bloodUnitService) throws ParseException {
 		// // Obtén todas las unidades de sangre
-		// System.out.println("Todas las unidades de sangre:");
-		// List<BloodUnit> allBloodUnits = bloodUnitService.getAllBloodUnits();
-		// allBloodUnits.forEach(System.out::println);
-		// System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("Todas las unidades de sangre:");
+		List<BloodUnit> allBloodUnits = bloodUnitService.getAllBloodUnits();
+		allBloodUnits.forEach(System.out::println);
+		 System.out.println("-----------------------------------------------------------------------------");
 
 		// // Obtén una unidad de sangre por ID
-		// System.out.println("\nUnidad de sangre con ID 1:");
-		// bloodUnitService.getBloodUnitById(1).ifPresent(System.out::println);
-		// System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("\nUnidad de sangre con ID 1:");
+		bloodUnitService.getBloodUnitById(1).ifPresent(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
 
 		// // Guarda una nueva unidad de sangre
-		// System.out.println("\nGuardando nueva unidad de sangre:");
-		// BloodUnit newBloodUnit = new BloodUnit();
-		// newBloodUnit.setBlood_type("B");
-		// newBloodUnit.setRh_factor("+");
-		// newBloodUnit.setDonation_date(new Date());
-		// newBloodUnit.setStatus("Available");
-		// newBloodUnit.setVolume_content(450.0); // Puedes establecer el volumen según
-		// tus necesidades
-		// // Puedes establecer otras propiedades según tus necesidades
+		System.out.println("\nGuardando nueva unidad de sangre:");
+		BloodUnit newBloodUnit = new BloodUnit();
+		newBloodUnit.setBlood_type("B");
+		newBloodUnit.setRh_factor("+");
+		newBloodUnit.setDonationdate(new Date());
+		newBloodUnit.setStatus("Available");
+		newBloodUnit.setVolume_content(450.0); // Puedes establecer el volumen según tus necesidades
+		// Puedes establecer otras propiedades según tus necesidades
 
-		// BloodUnit savedBloodUnit = bloodUnitService.saveBloodUnit(newBloodUnit);
-		// System.out.println("Unidad de sangre guardada: " + savedBloodUnit);
+		 BloodUnit savedBloodUnit = bloodUnitService.saveBloodUnit(newBloodUnit);
+		 System.out.println("Unidad de sangre guardada: " + savedBloodUnit);
 
-		// System.out.println("-----------------------------------------------------------------------------");
+		 System.out.println("-----------------------------------------------------------------------------");
 
 		// // Elimina la unidad de sangre con ID 1 (cambia el ID según tus necesidades)
-		// System.out.println("\nEliminando la unidad de sangre con ID 1:");
-		// bloodUnitService.deleteBloodUnit(22);
-		// System.out.println("-----------------------------------------------------------------------------");
+		 System.out.println("\nEliminando la unidad de sangre con ID 1:");
+		 bloodUnitService.deleteBloodUnit(22);
+		 System.out.println("-----------------------------------------------------------------------------");
 
 		// // Consulta las unidades de sangre donadas en una fecha específica
-		// String dateString = "2024-02-28";
-		// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		// Date specificDate = dateFormat.parse(dateString);
+		 String dateString = "2024-02-28";
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		 Date specificDate = dateFormat.parse(dateString);
 
 		// System.out.println("\nUnidades de sangre donadas en la fecha específica:");
-		// List<BloodUnit> bloodUnitsByDate =
-		// bloodUnitService.getBloodUnitsByDonationDate(specificDate);
-		// bloodUnitsByDate.forEach(System.out::println);
-		// System.out.println("-----------------------------------------------------------------------------");
+		 List<BloodUnit> bloodUnitsByDate = bloodUnitService.getBloodUnitsByDonationDate(specificDate);
+		bloodUnitsByDate.forEach(System.out::println);
+		 System.out.println("-----------------------------------------------------------------------------");
 
 		// Obtener unidades de sangre por grupo sanguíneo del donante
-		// System.out.println("\nUnidades de sangre por grupo sanguíneo del donante(grupo A):");
-		// List<BloodUnit> bloodUnitsByDonorBloodGroup =
-		// bloodUnitService.findBloodUnitsByDonorBloodGroup("B");
-		// bloodUnitsByDonorBloodGroup.forEach(System.out::println);
-		// System.out.println("-----------------------------------------------------------------------------");
+		 System.out.println("\nUnidades de sangre por grupo sanguíneo del donante(grupo A):");
+		 List<BloodUnit> bloodUnitsByDonorBloodGroup =
+		 bloodUnitService.findBloodUnitsByDonorBloodGroup("B");
+		 bloodUnitsByDonorBloodGroup.forEach(System.out::println);
+		 System.out.println("-----------------------------------------------------------------------------");
 
-		// System.out.println("\nUnidades de sangre con volumen mayor a 250.0:");
-		// List<BloodUnit> bloodUnitsByVolume =
-		// bloodUnitService.findBloodUnitsByVolumeContentGreaterThan(250.0);
-		// bloodUnitsByVolume.forEach(System.out::println);
-		// System.out.println("-----------------------------------------------------------------------------");
+		 System.out.println("\nUnidades de sangre con volumen mayor a 250.0:");
+		 List<BloodUnit> bloodUnitsByVolume =
+		 bloodUnitService.findBloodUnitsByVolumeContentGreaterThan(250.0);
+		 bloodUnitsByVolume.forEach(System.out::println);
+		 System.out.println("-----------------------------------------------------------------------------");
 
 	}
 
@@ -258,4 +264,67 @@ public class BloodDonationApplication {
         //     () -> System.out.println("No analysis results found for blood unit with ID" + sampleBloodUnit + ".")
         // );
 	}
+	
+	private static void testDonationRecordEventService(DonationRecordEventService donationRecordEventService) {
+		// Obtener todos los eventos de registro de donaciones
+		System.out.println("\nTodos los DonationRecordEvents:");
+		List<DonationRecordEvent> allDonationRecordEvents = donationRecordEventService.getAllDonationRecordEvents();
+		allDonationRecordEvents.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
+	
+		// Obtener un evento de registro de donaciones por ID (cambia el ID según tus necesidades)
+		Integer eventId = 1/* Proporciona un ID de DonationRecordEvent válido */;
+		System.out.println("\nDonationRecordEvent encontrado por ID (" + eventId + "):");
+		Optional<DonationRecordEvent> donationRecordEventById = donationRecordEventService.getDonationRecordEventById(eventId);
+		donationRecordEventById.ifPresent(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
+		System.out.println("-----------------------------------------------------------------------------");
+		// Guardar un nuevo evento de registro de donaciones
+		System.out.println("\nGuardando nuevo DonationRecordEvent:");
+		
+		// Obtén el ID de un donante, el ID de un evento de donación y el ID de una unidad de sangre válidos
+		Integer donorId = 1/* Proporciona el ID de un donante */;
+		Integer donationEventId = 1 /* Proporciona el ID de un evento de donación */;
+		Integer bloodUnitId = 1 /* Proporciona el ID de una unidad de sangre */;
+		
+		// Crea un nuevo DonationRecordEvent con los IDs obtenidos
+		DonationRecordEvent newDonationRecordEvent = DonationRecordEvent.builder()
+				.donorEvent(Person.builder().idperson(donorId).build())
+				.events(DonationEvent.builder().ID_Event(donationEventId).build())
+				.unitsEvent(BloodUnit.builder().ID_Unit(bloodUnitId).build())
+				.build();
+		
+		DonationRecordEvent savedDonationRecordEvent = donationRecordEventService.saveDonationRecordEvent(newDonationRecordEvent);
+		System.out.println("DonationRecordEvent guardado: " + savedDonationRecordEvent);
+		System.out.println("-----------------------------------------------------------------------------");
+		
+		// Eliminar un evento de registro de donaciones por ID (cambia el ID según tus necesidades)
+		Integer deleteEventId = 1/* Proporciona un ID de DonationRecordEvent válido para eliminar */;
+		System.out.println("\nEliminando DonationRecordEvent por ID (" + deleteEventId + ")");
+		donationRecordEventService.deleteDonationRecordEvent(deleteEventId);
+		System.out.println("DonationRecordEvent eliminado");
+		System.out.println("-----------------------------------------------------------------------------");
+	
+		// Obtén eventos de registro de donaciones por ID de donante (cambia el ID según tus necesidades)
+		System.out.println("\nEventos de registro de donaciones por ID de donante (ID 1):");
+		List<DonationRecordEvent> eventsByDonorId = donationRecordEventService.findDonationRecordEventsByDonorId(1);
+		eventsByDonorId.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
+
+		Integer enventId = 1 /* Proporciona un ID de evento válido */;
+		System.out.println("\nDonationRecordEvents encontrados por ID de Evento (" + eventId + "):");
+		List<DonationRecordEvent> eventsByEventId = donationRecordEventService.findByEventId(eventId);
+		eventsByEventId.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
+
+		// Obtén eventos de registro de donaciones por ID de unidad (cambia el ID según tus necesidades)
+		Integer unitId = 1 /* Proporciona un ID de unidad válido */;
+		System.out.println("\nDonationRecordEvents encontrados por ID de Unidad (" + unitId + "):");
+		List<DonationRecordEvent> eventsByUnitId = donationRecordEventService.findByUnitId(unitId);
+		eventsByUnitId.forEach(System.out::println);
+		System.out.println("-----------------------------------------------------------------------------");
+
+	}
+
+
 }

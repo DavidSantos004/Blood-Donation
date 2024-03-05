@@ -51,7 +51,7 @@ public class Person {
         generator = "person_sequence",
         strategy = GenerationType.SEQUENCE
         )
-    private Integer ID_person;
+    private Integer idperson;
 
     @Column(
         nullable = false
