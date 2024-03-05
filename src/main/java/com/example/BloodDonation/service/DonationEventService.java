@@ -5,6 +5,7 @@ import com.example.BloodDonation.repository.DonationEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,5 +33,17 @@ public class DonationEventService {
 
     public void deleteDonationEvent(Integer id) {
         donationEventRepository.deleteById(id);
+    }
+
+    public List<DonationEvent> getEventsByAddress(String address) {
+        return donationEventRepository.findByAddress(address);
+    }
+
+    public List<DonationEvent> findByStatus(String event){
+        return donationEventRepository.findByStatus(event);
+    }
+    
+    public List<DonationEvent> findByCity(String city){
+        return donationEventRepository.findByCity(city);
     }
 }

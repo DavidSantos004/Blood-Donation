@@ -1,11 +1,13 @@
 package com.example.BloodDonation;
 
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.boot.SpringApplication;
@@ -18,7 +20,9 @@ import com.example.BloodDonation.model.DonationEvent;
 import com.example.BloodDonation.model.DonationRecordEvent;
 import com.example.BloodDonation.model.EventResponsiblePerson;
 import com.example.BloodDonation.model.Person;
+import com.example.BloodDonation.model.Transfusion;
 import com.example.BloodDonation.repository.PersonRepository;
+import com.example.BloodDonation.repository.TransfusionRepository;
 import com.example.BloodDonation.service.AnalysisResultService;
 import com.example.BloodDonation.service.BloodUnitService;
 import com.example.BloodDonation.service.DonationEventService;
@@ -26,6 +30,7 @@ import com.example.BloodDonation.service.DonationRecordEventService;
 import com.example.BloodDonation.service.EventResponsiblePersonService;
 import com.example.BloodDonation.service.PersonService;
 import com.example.BloodDonation.service.TestDataGeneratorService;
+import com.example.BloodDonation.service.TransfusionService;
 
 @SpringBootApplication
 public class BloodDonationApplication {
@@ -42,11 +47,13 @@ public class BloodDonationApplication {
 		} else {
 			System.out.println("La base de datos ya contiene datos, no se ejecutará TestDataGeneratorService.");
 		}
-
 		// Obtiene el servicio de personas desde el contexto de la aplicación
+		TransfusionRepository transfusionRepository = context.getBean(TransfusionRepository.class);
 		PersonService personService = context.getBean(PersonService.class);
 		BloodUnitService bloodUnitService = context.getBean(BloodUnitService.class);
 		AnalysisResultService analysisResultService = context.getBean(AnalysisResultService.class);
+		TransfusionService transfusionService = context.getBean(TransfusionService.class);
+		DonationEventService donationEventService = context.getBean(DonationEventService.class);
 		DonationRecordEventService donationRecordEventService = context.getBean(DonationRecordEventService.class);
 		EventResponsiblePersonService eventResponsiblePersonService = context.getBean(EventResponsiblePersonService.class);
 		// AnalysisResultService analysisResultService = context.getBean(AnalysisResultService.class);
@@ -54,6 +61,8 @@ public class BloodDonationApplication {
 		testPersonService(personService);
 		testBloodUnitService(bloodUnitService);
 		testAnalysisResultService(analysisResultService);
+		testTransfusionService(transfusionService);
+		testDonationEventService(donationEventService);
 		testDonationRecordEventService(donationRecordEventService);
 		testEventResponsiblePersonService(eventResponsiblePersonService);
 		// Cierra el contexto de la aplicación
@@ -252,6 +261,168 @@ public class BloodDonationApplication {
     //     //     },
     //     //     () -> System.out.println("No analysis results found for blood unit with ID" + sampleBloodUnit + ".")
     //     // );
+	}
+
+	public static void testTransfusionService(TransfusionService transfusionService) throws ParseException{
+
+		// 1. Get all transfusions
+		// System.out.println("The transfusions are: \n");
+		// List<Transfusion> allTransfusions = transfusionService.getAllTransfusions();
+		// for (Transfusion result : allTransfusions) {
+		// 	System.out.println(result + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// // 2. Get transfusions by ID
+		// System.out.println("\nTransfusion by ID:\n");
+		// transfusionService.getTransfusionById(5).ifPresent(System.out::println);
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// // 3. Save a transfusion 
+		// System.out.println("\nSaving a transfusion:");
+		// SimpleDateFormat dates = new SimpleDateFormat("yyyy-MM-dd");
+
+		// BloodUnit unit = new BloodUnit();
+		// Person staff = new Person();
+		// Person receptor = new Person();
+		// Transfusion transfusion = new Transfusion();
+		// unit.setID_Unit(10);
+		// staff.setIdperson(9);
+		// receptor.setIdperson(13);
+		// Date analysisDate = dates.parse("2024-01-15");
+		
+		// transfusion.setUnitsTransfusion(unit);
+		// transfusion.setStaff(staff);
+		// transfusion.setReceptor(receptor);
+		// transfusion.setTransfusionDate(analysisDate);
+		// transfusion.setObservations("The patient's vital signs normalized following the transfusion, suggesting a successful intervention.");
+		
+		// transfusionService.saveTransfusion(transfusion);
+		// System.out.println("Transfusion was saved ");
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// // 4. Delete a transfusion by ID
+		// System.out.println("\nDeleting transfusion:");
+		// transfusionService.deleteTransfusion(22);
+		// System.out.println("The transfusion was deleted");
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// // 5. Get the transfusion by blood unit
+		// System.out.println("Transfusion by blood unit: \n");
+		// List<Map<String, Object>> transfusionBloodUnit = transfusionService.findTransfusionInfoByUnit(12);
+		// for (Map<String, Object> result : transfusionBloodUnit) {
+		// 	System.out.println(result + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// // 6. Get the transfusion by date
+		// String date = "2024-03-02";
+		// DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		// Date specificDate = dateFormat.parse(date);
+
+		// System.out.println("\nTransfusion with an especific date:\n");
+		// List<Transfusion> transfusionDate =
+		// transfusionService.findByTransfusiondate(specificDate);
+		// for (Transfusion result : transfusionDate) {
+		// 	System.out.println(result + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// // 7. Get the transfusion based on blood unit 
+		// System.out.println("\nTransfusions with specific blood unit are: \n");
+		// List<Map<String, Object>> results = transfusionService.findTransfusionInfoByUnit(20);
+
+		// for (Map<String, Object> result : results) {
+		// 	Integer ID_Transfusion = (Integer) result.get("ID_Transfusion");
+		// 	// Date transfusionDate = (Date) result.get("transfusionDate");
+		// 	String observations = (String) result.get("observations");
+
+		// 	System.out.println("Id Transfusion: " + ID_Transfusion);
+		// 	System.out.println("Transfusion Date: " + transfusionDate);
+		// 	System.out.println("Observations: " + observations);
+		//  System.out.println("-----------------------------------------------------------------------------");
+		// }
+	
+        // // 8. Get relationships with transfusion ID
+		// System.out.println("\nThe relationship's information are:\n");
+        // List<Object[]> result = transfusionService.findCustomDataById(2);
+
+        // for (Object[] row : result) {
+        //     Integer receptorId = (Integer) row[0];
+        //     Integer staffTransfusionId = (Integer) row[1];
+        //     Integer unitId = (Integer) row[2];
+
+        //     System.out.println("Receptor ID: " + receptorId + ", Staff Transfusion ID: " + staffTransfusionId + ", Unit ID: " + unitId);
+        // }
+		//  System.out.println("-----------------------------------------------------------------------------");
+        
+    }
+
+	public static void testDonationEventService(DonationEventService donationEventService) throws ParseException{
+
+		// 1. Get all donation events
+		// System.out.println("All Donation Events:");
+		// List<DonationEvent> allDonationEvents =
+		// donationEventService.getAllDonationEvents();
+		// for (DonationEvent type : allDonationEvents) {
+		// 	System.out.println(type + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		//2. Get donation event by ID
+		// System.out.println("\nDonation Event ID:");
+		// donationEventService.getDonationEventById(2).ifPresent(System.out::println);
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 3. Save an event
+		// System.out.println("\nSaving an event:");
+		// SimpleDateFormat dates = new SimpleDateFormat("yyyy-MM-dd");
+
+		// DonationEvent event = new DonationEvent();
+		// Date date = dates.parse("2024-04-12");
+
+		// event.setAddress("Carrera 4 # 14-100");
+		// event.setCity("Bucaramanga");
+		// event.setDescription("Workplace Blood Donation Campaign - Join us in Bucaramanga for a special corporate blood donation initiative. Your participation can make a meaningful impact. Step up and contribute to this noble cause by donating blood.");
+		// event.setEvent_date(date);
+		// event.setStatus_event("Scheduled");
+		// donationEventService.saveDonationEvent(event);
+
+		// System.out.println("Donation Event was saved ");
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 4. Delete an event by ID
+		// System.out.println("\nDeleting a donation's event:");
+		// donationEventService.deleteDonationEvent(22);
+		// System.out.println("The donation's event was deleted");
+		// System.out.println("-----------------------------------------------------------------------------");
+		
+		// 5. Get Donation Event by Status
+		// System.out.println("\nDonation event by status: \n");
+		// List<DonationEvent> events = donationEventService.findByStatus("Completed");
+		// for (DonationEvent result : events) {
+		// 	System.out.println(result + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+
+		// 6. Get Donation Event by city
+		// System.out.println("\nDonation event by city: \n");
+		// List<DonationEvent> eventsCity = donationEventService.findByCity("Barranquilla");
+		// for (DonationEvent result : eventsCity) {
+		// 	System.out.println(result + "\n");
+		// }
+		// System.out.println("-----------------------------------------------------------------------------");
+		
+		//7. Search for asset donation events in a specific address:
+
+		// String addressToSearch = "Carrera 7 # 32-37";
+        //     List<DonationEvent> eventsByAddress = donationEventService.getEventsByAddress(addressToSearch);
+
+        //     // Imprime los resultados
+        //     System.out.println("Donation Events por dirección '" + addressToSearch + "':");
+        //     eventsByAddress.forEach(System.out::println);
+        //     System.out.println("-----------------------------------------------------------------------------");
+       
 	}
 	
 	 private static void testDonationRecordEventService(DonationRecordEventService donationRecordEventService) {
