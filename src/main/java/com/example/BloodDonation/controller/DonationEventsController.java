@@ -3,6 +3,7 @@ package com.example.BloodDonation.controller;
 import com.example.BloodDonation.model.DonationEvent;
 import com.example.BloodDonation.service.DonationEventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,13 @@ public class DonationEventsController {
     @PostMapping
     public DonationEvent saveDonationEvent(@RequestBody DonationEvent donationEvent) {
         return donationEventService.saveDonationEvent(donationEvent);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DonationEvent> updateDonationEvent(@PathVariable Integer id, @RequestBody DonationEvent updatedDonationEvent) {
+        Optional<DonationEvent> donationEvent = donationEventService.updateDonationEvent(id, updatedDonationEvent);
+        return donationEvent.map(ResponseEntity::ok)
+                           .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")

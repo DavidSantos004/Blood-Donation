@@ -34,6 +34,22 @@ public class TransfusionService {
         return transfusionRepository.save(transfusion);
     }
 
+    public Optional<Transfusion> updateTransfusion(Integer id, Transfusion updatedTransfusion) {
+        Optional<Transfusion> existingTransfusion = transfusionRepository.findById(id);
+
+        if (existingTransfusion.isPresent()) {
+            Transfusion transfusionToUpdate = existingTransfusion.get();
+            transfusionToUpdate.setTransfusionDate(updatedTransfusion.getTransfusionDate());
+            transfusionToUpdate.setObservations(updatedTransfusion.getObservations());
+            // Actualiza otras propiedades según sea necesario
+
+            transfusionRepository.save(transfusionToUpdate);
+            return Optional.of(transfusionToUpdate);
+        } else {
+            return Optional.empty();
+        }
+    }
+
     public void deleteTransfusion(Integer id) {
         transfusionRepository.deleteById(id);
     }

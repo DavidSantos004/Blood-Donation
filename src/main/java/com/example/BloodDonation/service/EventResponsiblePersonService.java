@@ -45,4 +45,21 @@ public class EventResponsiblePersonService {
     public Optional<EventResponsiblePerson> findEventResponsiblePersonById(Integer id) {
         return eventResponsiblePersonRepository.findEventResponsiblePersonById(id);
     }
+
+    public Optional<EventResponsiblePerson> updateEventResponsiblePerson(Integer id, EventResponsiblePerson updatedEventResponsiblePerson) {
+        Optional<EventResponsiblePerson> existingEventResponsiblePerson = eventResponsiblePersonRepository.findById(id);
+
+        if (existingEventResponsiblePerson.isPresent()) {
+            EventResponsiblePerson eventResponsiblePersonToUpdate = existingEventResponsiblePerson.get();
+            eventResponsiblePersonToUpdate.setStaffEvent(updatedEventResponsiblePerson.getStaffEvent());
+            eventResponsiblePersonToUpdate.setEventsResponsible(updatedEventResponsiblePerson.getEventsResponsible());
+
+            eventResponsiblePersonRepository.save(eventResponsiblePersonToUpdate);
+            return Optional.of(eventResponsiblePersonToUpdate);
+        } else {
+            return Optional.empty();
+        }
+
+    }
+
 }

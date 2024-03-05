@@ -31,6 +31,25 @@ public class DonationEventService {
         return donationEventRepository.save(donationEvent);
     }
 
+    public Optional<DonationEvent> updateDonationEvent(Integer id, DonationEvent updatedDonationEvent) {
+        Optional<DonationEvent> existingDonationEvent = donationEventRepository.findById(id);
+
+        if (existingDonationEvent.isPresent()) {
+            DonationEvent donationEventToUpdate = existingDonationEvent.get();
+            donationEventToUpdate.setEvent_date(updatedDonationEvent.getEvent_date());
+            donationEventToUpdate.setCity(updatedDonationEvent.getCity());
+            donationEventToUpdate.setAddress(updatedDonationEvent.getAddress());
+            donationEventToUpdate.setDescription(updatedDonationEvent.getDescription());
+            donationEventToUpdate.setStatus_event(updatedDonationEvent.getStatus_event());
+
+            donationEventRepository.save(donationEventToUpdate);
+            return Optional.of(donationEventToUpdate);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+
     public void deleteDonationEvent(Integer id) {
         donationEventRepository.deleteById(id);
     }

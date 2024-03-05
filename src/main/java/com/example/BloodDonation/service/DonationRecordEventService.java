@@ -35,6 +35,23 @@ public class DonationRecordEventService {
         return donationRecordEventRepository.save(donationRecordEvent);
     }
 
+    public Optional<DonationRecordEvent> updateDonationRecordEvent(Integer id, DonationRecordEvent updatedDonationRecordEvent) {
+        Optional<DonationRecordEvent> existingDonationRecordEvent = donationRecordEventRepository.findById(id);
+
+        if (existingDonationRecordEvent.isPresent()) {
+            DonationRecordEvent donationRecordEventToUpdate = existingDonationRecordEvent.get();
+            // Actualiza las propiedades según sea necesario
+            donationRecordEventToUpdate.setDonorEvent(updatedDonationRecordEvent.getDonorEvent());
+            donationRecordEventToUpdate.setEvents(updatedDonationRecordEvent.getEvents());
+            donationRecordEventToUpdate.setUnitsEvent(updatedDonationRecordEvent.getUnitsEvent());
+
+            donationRecordEventRepository.save(donationRecordEventToUpdate);
+            return Optional.of(donationRecordEventToUpdate);
+        } else {
+            return Optional.empty();
+        }
+    }
+
     public void deleteDonationRecordEvent(Integer id) {
         donationRecordEventRepository.deleteById(id);
     }

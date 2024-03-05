@@ -35,6 +35,24 @@ public class AnalysisResultService {
         analysisResultRepository.deleteById(id);
     }
 
+    public Optional<AnalysisResult> updateAnalysisResult(Integer id, AnalysisResult updatedAnalysisResult) {
+        Optional<AnalysisResult> existingAnalysisResult = analysisResultRepository.findById(id);
+
+        if (existingAnalysisResult.isPresent()) {
+            AnalysisResult analysisResultToUpdate = existingAnalysisResult.get();
+            // Actualiza las propiedades según sea necesario
+            analysisResultToUpdate.setAnalysis_type(updatedAnalysisResult.getAnalysis_type());
+            analysisResultToUpdate.setResult(updatedAnalysisResult.getResult());
+            analysisResultToUpdate.setAnalysis_date(updatedAnalysisResult.getAnalysis_date());
+            analysisResultToUpdate.setObservations(updatedAnalysisResult.getObservations());
+
+            analysisResultRepository.save(analysisResultToUpdate);
+            return Optional.of(analysisResultToUpdate);
+        } else {
+            return Optional.empty();
+        }
+    }
+
     public List<AnalysisResult> findAnalysisResultByType(String type){
         return analysisResultRepository.findAnalysisResultByType(type);
     }

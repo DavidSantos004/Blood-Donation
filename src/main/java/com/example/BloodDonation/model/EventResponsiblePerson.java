@@ -32,12 +32,10 @@ public class EventResponsiblePerson {
 
     // Relationsships
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "staff_event_id", nullable = false)
     private Person staffEvent;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false)
     private DonationEvent eventsResponsible;

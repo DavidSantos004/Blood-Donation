@@ -32,6 +32,32 @@ public class PersonService {
         return personRepository.save(person);
     }
 
+
+    public Optional<Person> updatePerson(Integer id, Person updatedPerson) {
+        Optional<Person> existingPerson = personRepository.findById(id);
+
+        if (existingPerson.isPresent()) {
+            Person personToUpdate = existingPerson.get();
+            personToUpdate.setFirst_name(updatedPerson.getFirst_name());
+            personToUpdate.setLast_name(updatedPerson.getLast_name());
+            personToUpdate.setDni(updatedPerson.getDni());
+            personToUpdate.setUser_type(updatedPerson.getUser_type());
+            personToUpdate.setBloodgroup(updatedPerson.getBloodgroup());
+            personToUpdate.setRh_factor(updatedPerson.getRh_factor());
+            personToUpdate.setBirthdate(updatedPerson.getBirthdate());
+            personToUpdate.setAddress(updatedPerson.getAddress());
+            personToUpdate.setPhone(updatedPerson.getPhone());
+            personToUpdate.setEmail(updatedPerson.getEmail());
+            personToUpdate.setLast_donation(updatedPerson.getLast_donation());
+            personToUpdate.setRole(updatedPerson.getRole());
+
+            personRepository.save(personToUpdate);
+            return Optional.of(personToUpdate);
+        } else {
+            return Optional.empty();
+        }
+    }
+
     public void deletePerson(Integer id) {
         personRepository.deleteById(id);
     }

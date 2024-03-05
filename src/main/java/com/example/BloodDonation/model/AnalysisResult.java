@@ -46,8 +46,6 @@ public class AnalysisResult {
 
     // Relationship
 
-        
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "unit_id", nullable = false)
     private BloodUnit units;

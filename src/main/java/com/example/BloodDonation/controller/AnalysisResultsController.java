@@ -3,6 +3,7 @@ package com.example.BloodDonation.controller;
 import com.example.BloodDonation.model.AnalysisResult;
 import com.example.BloodDonation.service.AnalysisResultService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,13 @@ public class AnalysisResultsController {
     @PostMapping
     public AnalysisResult saveAnalysisResult(@RequestBody AnalysisResult analysisResult) {
         return analysisResultService.saveAnalysisResult(analysisResult);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AnalysisResult> updateAnalysisResult(@PathVariable Integer id, @RequestBody AnalysisResult updatedAnalysisResult) {
+        Optional<AnalysisResult> analysisResult = analysisResultService.updateAnalysisResult(id, updatedAnalysisResult);
+        return analysisResult.map(ResponseEntity::ok)
+                        .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
