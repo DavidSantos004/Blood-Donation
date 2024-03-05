@@ -57,7 +57,7 @@ public class BloodDonationApplication {
 		testDonationRecordEventService(donationRecordEventService);
 		testEventResponsiblePersonService(eventResponsiblePersonService);
 		// Cierra el contexto de la aplicación
-		context.close();
+		
 	}
 
 	// servicios de persona
@@ -116,9 +116,9 @@ public class BloodDonationApplication {
 	// 	System.out.println("\nEmpleados:");
 	// 	employees.forEach(System.out::println);
 	// 	System.out.println("-----------------------------------------------------------------------------");
-	// }
+ }
 
-	// private static void testBloodUnitService(BloodUnitService bloodUnitService) throws ParseException {
+	private static void testBloodUnitService(BloodUnitService bloodUnitService) throws ParseException {
 	// 	// // Obtén todas las unidades de sangre
 	// 	System.out.println("Todas las unidades de sangre:");
 	// 	List<BloodUnit> allBloodUnits = bloodUnitService.getAllBloodUnits();
@@ -221,7 +221,7 @@ public class BloodDonationApplication {
 	// 	// analysisResultService.findAnalysisResultByType("Blood Test");
 	// 	// for (AnalysisResult type : byType) {
 	// 	// 	System.out.println(type + "\n");
-	// 	// }
+ 	//}
 	// 	// System.out.println("-----------------------------------------------------------------------------");
 
 	// 	// 6. Show depends the result that you selected
@@ -231,7 +231,7 @@ public class BloodDonationApplication {
 	// 	// analysisResultService.findAnalysisResultByResult("High");
 	// 	// for (AnalysisResult result : byResult) {
 	// 	// 	System.out.println(result + "\n");
-	// 	// }
+ //}
 	// 	// System.out.println("-----------------------------------------------------------------------------");
 
 	// 	// 7. Update one 
@@ -252,9 +252,9 @@ public class BloodDonationApplication {
     //     //     },
     //     //     () -> System.out.println("No analysis results found for blood unit with ID" + sampleBloodUnit + ".")
     //     // );
-	// }
+	}
 	
-	// private static void testDonationRecordEventService(DonationRecordEventService donationRecordEventService) {
+	 private static void testDonationRecordEventService(DonationRecordEventService donationRecordEventService) {
 	// 	// Obtener todos los eventos de registro de donaciones
 	// 	System.out.println("\nTodos los DonationRecordEvents:");
 	// 	List<DonationRecordEvent> allDonationRecordEvents = donationRecordEventService.getAllDonationRecordEvents();
