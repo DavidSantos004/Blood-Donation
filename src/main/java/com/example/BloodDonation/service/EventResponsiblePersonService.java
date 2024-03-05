@@ -33,4 +33,16 @@ public class EventResponsiblePersonService {
     public void deleteEventResponsiblePerson(Integer id) {
         eventResponsiblePersonRepository.deleteById(id);
     }
+
+    public List<EventResponsiblePerson> findEventResponsiblePersonsByStaffId(Integer staffId) {
+        return eventResponsiblePersonRepository.findByStaffEvent_idperson(staffId);
+    }
+   
+    public List<EventResponsiblePerson> findAllEventResponsiblePersons() {
+        return eventResponsiblePersonRepository.findAllEventResponsiblePersons();
+    }
+
+    public Optional<EventResponsiblePerson> findEventResponsiblePersonById(Integer id) {
+        return eventResponsiblePersonRepository.findEventResponsiblePersonById(id);
+    }
 }
